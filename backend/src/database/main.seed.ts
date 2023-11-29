@@ -4,7 +4,6 @@ import UserSeeder from './seeds/user.seeder';
 import HospitalSeeder from './seeds/hospital.seeder';
 import { HospitalsFactory } from './factories/hospitals.factory';
 
-
 export default class MainSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
@@ -14,6 +13,7 @@ export default class MainSeeder implements Seeder {
       seeds: [UserSeeder, HospitalSeeder],
       factories: [HospitalsFactory],
     });
+    console.log('Seeding completed successfully!');
   }
 }
 

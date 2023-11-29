@@ -31,6 +31,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       logging:
         this.configService.get<string>('app.nodeEnv', { infer: true }) !==
         'production',
+      migrations: [__dirname + '/../migrations/**/*.ts'],
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       seeds: [MainSeeder],
     } as TypeOrmModuleOptions;

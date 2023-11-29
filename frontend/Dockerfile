@@ -1,12 +1,24 @@
 FROM node:18
 
-WORKDIR /app
+COPY ./package.json /app/package.json
+WORKDIR /app/
 
-COPY package*.json ./
 
-RUN npm i -g npm@9.1.1 && \
-    npm i -f && \
+RUN npm i -g yarn && \
+    yarn  && \
     find /app/node_modules/ ! -user root | xargs chown root:root
-COPY . .
+
+
+
+COPY . /app/
+
+
+
+# Post install
+
+RUN yarn run build
+
+
+# execute start script
 
 CMD ["yarn", "dev"]
