@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "3306:3306"
+    networks:
+      - wave_tech_network
+
+  # Nest.js Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile 
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      APP_PORT: ${APP_PORT}
+      APP_NAME: ${APP_NAME}
+      API_PREFIX: ${API_PREFIX}
+      BACKEND_DOMAIN: ${BACKEND_DOMAIN}
+      DATABASE_TYPE: ${DATABASE_TYPE}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_SYNCHRONIZE: ${DATABASE_SYNCHRONIZE}
+    depends_on:
+      - db
+      - db_seeder
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    networks:
+      - wave_tech_network
+
+  # MySQL Seeder
+  db_seeder:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-seeder
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_TYPE: ${DATABASE_TYPE}
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+    depends_on:
+      - db
+    networks:
+      - wave_tech_network
+
+  # React Vite Client
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile 
+    environment:
+      NODE_ENV: ${NODE_ENV}
+    ports:
+      - "5173:5173"
+    networks:
+      - wave_tech_network
+
+networks:
+  wave_tech_network:
+    driver: bridge
