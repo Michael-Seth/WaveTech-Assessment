@@ -8,8 +8,10 @@ RUN npm install
 
 COPY . .
 
-RUN npm install
+RUN npm run db:sync
+
+RUN npm run seed
 
 EXPOSE 5000
 
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start"]
