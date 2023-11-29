@@ -51,7 +51,7 @@ function CustomButton({
       </RenderIf>
       <Tooltip title={tooltip ? tooltip : ""}>
         <Typography
-          className={`${icon && "ml-3"} sm:text-[12px]`}
+          className={`${icon && "ml-3"} text-black font-semibold sm:text-[12px]`}
           variant="body2"
         >
           {loading ? "Loading ..." : label}

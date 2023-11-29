@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TUser } from "./authTypes";
-import { getUser, login } from "./authApi";
+import { THospitals, TUser } from "./authTypes";
+import { getHospitals, getUser, login } from "./authApi";
 
 type TAuthState = {
   userDetails?: TUser | null;
@@ -11,6 +11,7 @@ type TAuthState = {
   resetRequestSuccess?: boolean;
   passwordResetSuccess?: boolean;
   isLoggedIn: boolean;
+  allHospitals: THospitals[];
 };
 
 const initialState: TAuthState = {
@@ -22,6 +23,7 @@ const initialState: TAuthState = {
   successMsg: "",
   resetRequestSuccess: false,
   passwordResetSuccess: false,
+  allHospitals: [],
 };
 
 const authSlice = createSlice({
@@ -30,34 +32,63 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(login.pending, (state: TAuthState) => {
-      state.loading = true
-    })
+      state.loading = true;
+    });
 
-    builder.addCase(login.fulfilled, (state: TAuthState, { payload }: PayloadAction<any>) => {
-      state.loading = false,
-        state.userDetails = payload.user
-    })
+    builder.addCase(
+      login.fulfilled,
+      (state: TAuthState, { payload }: PayloadAction<any>) => {
+        (state.loading = false), (state.userDetails = payload.user);
+        state.isLoggedIn = true;
+        state.token = payload.accessToken;
+      }
+    );
 
-    builder.addCase(login.rejected, (state: TAuthState, { payload }: PayloadAction<any>) => {
-      state.loading = false,
-        state.error = payload
-    })
-
+    builder.addCase(
+      login.rejected,
+      (state: TAuthState, { payload }: PayloadAction<any>) => {
+        (state.loading = false), (state.error = payload);
+      }
+    );
 
     //fetch
     builder.addCase(getUser.pending, (state: TAuthState) => {
-      state.loading = true
-    })
+      state.loading = true;
+    });
 
-    builder.addCase(getUser.fulfilled, (state: TAuthState, { payload }: PayloadAction<any>) => {
-      state.loading = false,
-        state.userDetails = payload.user
-    })
+    builder.addCase(
+      getUser.fulfilled,
+      (state: TAuthState, { payload }: PayloadAction<any>) => {
+        (state.loading = false), (state.userDetails = payload.user);
+      }
+    );
 
-    builder.addCase(getUser.rejected, (state: TAuthState, { payload }: PayloadAction<any>) => {
-      state.loading = false,
-        state.error = payload
-    })
+    builder.addCase(
+      getUser.rejected,
+      (state: TAuthState, { payload }: PayloadAction<any>) => {
+        (state.loading = false), (state.error = payload);
+      }
+    );
+
+    // getHospitals
+    //fetch
+    builder.addCase(getHospitals.pending, (state: TAuthState) => {
+      state.loading = true;
+    });
+
+    builder.addCase(
+      getHospitals.fulfilled,
+      (state: TAuthState, { payload }: PayloadAction<any>) => {
+        (state.loading = false), (state.allHospitals = payload);
+      }
+    );
+
+    builder.addCase(
+      getHospitals.rejected,
+      (state: TAuthState, { payload }: PayloadAction<any>) => {
+        (state.loading = false), (state.error = payload);
+      }
+    );
   },
 });
 

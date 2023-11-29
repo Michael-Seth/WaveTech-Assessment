@@ -1,23 +1,23 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { HiOutlineBell } from "react-icons/hi";
 import { useAppSelector } from "../../../constants/redux/hooks";
+import Search from "../../../assets/Icon-left.svg";
 
 const Header = () => {
   const { userDetails: user } = useAppSelector((state) => state.auth);
   return (
-    <div className=" bg-white h-20 px-4 flex flex-row items-center justify-between">
-      <div className="sm:hidden w-1/3 flex items-center bg-slate-900  ">
+    <div className=" bg-white h-20 px-4 flex items-center  w-full justify-between">
+      <div className=" w-[629px] flex items-center rounded-md bg-slate-50  ">
+        <img src={Search} className="ml-2 bg-transparent " alt="Search" />
         <input
           type="search"
           placeholder="Search here..."
-          className="text-sm focus:outline-none active:outline-none h-10 w-[100%]  border-[#D2D2D4] border rounded-md px-3 text-gray-400"
+          className="text-sm w-full bg-transparent focus:outline-none active:outline-none h-10    px-3"
         />
       </div>
 
-      <div className="flex items-center sm:justify-between  sm:w-full gap-2 mr-3 pr-20 lg:pr-2">
-        {/* menu */}
-
-        {/* message */}
+      <div className="flex items-center right-0 relative  sm:w-full gap-2 mr-3 pr-20 lg:pr-2">
+    
 
         <IconButton className="relative">
           <HiOutlineBell
@@ -32,10 +32,7 @@ const Header = () => {
           </Typography>
         </IconButton>
 
-        <Box
-          component="div"
-          className="sm:hidden w-[40px] h-[40px] rounded-full"
-        >
+        <Box component="div" className=" w-[40px] h-[40px] rounded-full">
           <Box
             component="img"
             src={
@@ -50,7 +47,7 @@ const Header = () => {
         </Box>
         <Box
           component="button"
-          className="sm:hidden flex items-start gap-2 border-none bg-black/0 relative cursor-pointer"
+          className=" flex items-start gap-2 border-none bg-black/0 relative cursor-pointer"
         >
           <Box className="flex flex-col gap-2 ">
             <span className="font-[600] font-SF text-[16px]">

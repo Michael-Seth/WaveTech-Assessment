@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import DashbordLayout from "../DashboardLayout/DashbordLayout";
 import Dashboard from "../../../page/Dashboard/Dashboard";
-import { useAppSelector } from "../../../constants/redux/hooks";
-import { getUser } from "../../../constants/redux/auth/authApi";
+import { useAppDispatch, useAppSelector } from "../../../constants/redux/hooks";
+import { getHospitals, getUser } from "../../../constants/redux/auth/authApi";
 import React from "react";
 import SplashScreen from "../SplashScreen/SplashScreen";
 import LayoutContextProvider from "./context/LayoutContextProvider";
@@ -25,15 +25,16 @@ const Layout = () => {
     },
   ];
 
-  // const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     if (!isLoggedIn) {
       navigateRef.current(`/auth/login`, { replace: true });
     } else {
-      getUser(userDetails?.id as string);
+      dispatch(getUser(userDetails?.id as string));
+      dispatch(getHospitals());
     }
-  }, [getUser, isLoggedIn]);
+  }, [getUser, isLoggedIn, getHospitals]);
 
   let content = <></>;
 

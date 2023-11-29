@@ -22,8 +22,14 @@ export type TUser = {
   token: string;
 };
 
-
 export type LoginDto = {
   email: string;
   password: string;
+};
+
+export type THospitals = {
+  name: string;
+  address: string;
+  phone_number: string;
+  ratings: string;
 };

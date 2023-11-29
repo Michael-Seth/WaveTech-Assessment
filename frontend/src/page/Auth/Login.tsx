@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Checkbox } from "@mui/material";
 import AppLogo from "../../components/shared/custom-icons/AppLogo";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ const loginDefaultvalue: LoginDto = {
 };
 
 const Login = () => {
+  const [apiError, setApiError] = useState("");
   const { loading } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -22,11 +24,18 @@ const Login = () => {
   });
 
   const onSubmit = async (value: LoginDto) => {
-    console.log(value);
-    navigate("/app/dashboard");
+    console.log("The value: ", value);
 
     dispatch(login(value))
       .then((res) => {
+
+        if (res.payload.accessToken) {
+        
+          navigate("/app/dashboard");
+
+        } else {
+          setApiError(res.payload.message);
+        }
         console.log(res);
       })
       .catch((error: any) => {
@@ -36,12 +45,16 @@ const Login = () => {
 
   return (
     <div className=" bg-primaryLight  h-screen w-screen flex items-center justify-center flex-col gap-8">
-      <AppLogo />
+      <div className="mx-auto mt-40 mb-12">
+        <AppLogo />
+      </div>
       <form className="bg-white mx-auto py-8 px-4 w-2/6 rounded-md ">
-        <h5 className="text-black text-2xl text-center">Log In</h5>
-        <p className="mb-7 text-sm text-darkGray">
-          Enter your credentials to access your account
-        </p>
+        <div className="mx-auto text-center mb-8">
+          <p className="font-semibold text-3xl m-2">Log In</p>
+          <p className=" text-base text-[#667185]">
+            Enter your credentials to access your account
+          </p>
+        </div>
 
         <ControllTextInput
           label="EMAIL ADDRESS"
@@ -65,6 +78,7 @@ const Login = () => {
             Forgot Password?
           </Link>
         </div>
+        {apiError && <p className="text-red-500 font-semibold">{apiError}</p>}
         <CustomButton
           label="Log into Account "
           bg="bg-primary hover:bg-primary/90"

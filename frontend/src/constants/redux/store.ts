@@ -4,7 +4,6 @@ import rootReducer from "./rootReducer";
 import {
   FLUSH,
   PAUSE,
-  PERSIST,
   persistReducer,
   PURGE,
   REGISTER,
@@ -14,7 +13,7 @@ import {
 const persistConfig = {
   key: "root",
   storage: storageSession,
-  // whitelist: ["auth"],
+  whitelist: ["auth"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -23,11 +22,12 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+// serializableCheck: {
+//   //ignoredActions: [FLUSH, REHYDRATE, PAUSE, PURGE, REGISTER],
+// },

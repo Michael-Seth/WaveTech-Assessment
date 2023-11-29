@@ -7,6 +7,7 @@ export default {
         primary: "#EB5017",
         primaryLight: "#FFECE5",
         primaryGray: "#D0D5DD",
+        focusColour: "#FCB59A",
         lightGray: "#F9FAFB",
         darkGray: "#98A2B3",
         black: "#101928",

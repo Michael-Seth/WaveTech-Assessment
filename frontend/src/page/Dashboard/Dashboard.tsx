@@ -2,8 +2,14 @@ import { BsHospital, BsSearch } from "react-icons/bs";
 import CustomButton from "../../components/shared/Button/Button";
 import { Rating } from "@mui/material";
 import { IoMdMore } from "react-icons/io";
+import { useAppDispatch, useAppSelector } from "../../constants/redux/hooks";
+import { getHospitals } from "../../constants/redux/auth/authApi";
 
 const Dashboard = () => {
+  const dispatch = useAppDispatch();
+  const { allHospitals } = useAppSelector((state) => state.auth);
+
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -20,7 +26,7 @@ const Dashboard = () => {
 
       <div className="flex gap-5 items-center mt-3">
         <CustomButton
-          label="Find hospital near me"
+          label="All Hospitals"
           bg="bg-primaryLight"
           customStyles="w-[200px]"
           icon={<BsSearch />}
@@ -67,8 +73,8 @@ const Dashboard = () => {
         </div>
 
         <div className="relative overflow-x-auto">
-          <table className="w-full text-sm text-left border border-solid rounded-md rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700  capitalize bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full text-sm text-left border border-solid rounded-md rtl:text-right text-gray-500 ">
+            <thead className="text-xs text-gray-700  capitalize bg-gray-50  ">
               <tr className="border-solid border rounded-[20px]">
                 <th scope="col" className="px-6 py-3">
                   Name
@@ -87,25 +93,26 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white  dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Afrimed Specialist Hospital
-                </th>
-                <td className="px-6 py-4">
-                  17, Bamidele Street, Osapa London, Lekki, Ibeju-Lekki
-                </td>
-                <td className="px-6 py-4">0814 609 2019</td>
-                <td className="px-6 py-4">
-                  <Rating value={3} max={5} />
-                </td>
-                <td className="px-6 py-4">
-                  {" "}
-                  <IoMdMore className="text-2xl" />{" "}
-                </td>
-              </tr>
+              {allHospitals.map((hospital, index) => {
+                return (
+                  <tr key={index} className="bg-white">
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                      {hospital.name}
+                    </th>
+                    <td className="px-6 py-4">{hospital.address}</td>
+                    <td className="px-6 py-4"> {hospital.phone_number}</td>
+                    <td className="px-6 py-4">
+                      <Rating value={Number(hospital.ratings)} max={5} />
+                    </td>
+                    <td className="px-6 py-4">
+                      <IoMdMore className="text-2xl" />{" "}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

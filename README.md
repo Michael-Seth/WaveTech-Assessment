@@ -15,8 +15,9 @@ Certainly! Below is a README file for the root folder of your project, including
       - [1. Setup Database with XAMPP](#1-setup-database-with-xampp)
       - [2. Configure Environment Variables](#2-configure-environment-variables)
       - [3. Install Dependencies](#3-install-dependencies)
-      - [4. Database Seeding](#4-database-seeding)
-      - [5. Start the Application](#5-start-the-application)
+      - [4. Database Syncing](#4-database-syncing)
+      - [5. Database Seeding](#5-database-seeding)
+      - [6. Start the Application](#6-start-the-application)
 - [Environment Configuration](#environment-configuration)
 - [Database Configuration](#database-configuration)
 - [JWT Configuration](#jwt-configuration)
@@ -59,7 +60,7 @@ Before you begin, ensure you have the following prerequisites installed on your 
    npm install
 
    # For the client
-   cd ../wave_tech_client
+   cd ../frontend
    npm install
    ```
 
@@ -116,8 +117,8 @@ DATABASE_PASSWORD=
 DATABASE_NAME=assessment
 DATABASE_SYNCHRONIZE=true
 
-JWT_SECRET=Michael78
-AUTH_JWT_TOKEN_EXPIRES_IN=7d
+JWT_SECRET=[YOUR_SECRET_KEY]
+AUTH_JWT_TOKEN_EXPIRES_IN=[1d]
 
 CALL_BACK_URL=http://localhost:5000
 ```
@@ -127,7 +128,7 @@ CALL_BACK_URL=http://localhost:5000
 Navigate to the server directory:
 
 ```bash
-cd wave_tech_server
+cd backend
 ```
 
 Install dependencies:
@@ -136,7 +137,17 @@ Install dependencies:
 npm install
 ```
 
-#### 4. Database Seeding
+
+#### 4. Database Syncing
+
+Sync the data into the database:
+
+```bash
+npm run db:sync
+```
+
+
+#### 5. Database Seeding
 
 Seed data into the database:
 
@@ -144,7 +155,7 @@ Seed data into the database:
 npm run seed
 ```
 
-#### 5. Start the Application
+#### 6. Start the Application
 
 Start the NestJS server:
 
@@ -157,14 +168,14 @@ Visit [http://localhost:5000/api](http://localhost:5000/api) to access the appli
 
 ## Environment Configuration
 
-1. Copy the `.env-example` file in both the `wave_tech_server` and `wave_tech_client` directories to create new `.env` files:
+1. Copy the `.env-example` file in both the `wave_tech_server` and `frontend` directories to create new `.env` files:
 
    ```bash
    # For the server
    cp .env-example .env
 
    # For the client
-   cd ../wave_tech_client
+   cd ../frontend
    cp .env-example .env
    ```
 
@@ -186,7 +197,7 @@ Visit [http://localhost:5000/api](http://localhost:5000/api) to access the appli
 To seed data into the MySQL database, run the following command:
 
 ```bash
-cd wave_tech_server
+cd backend
 npm run seed
 ```
 
