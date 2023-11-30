@@ -2,12 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import storageSession from "redux-persist/lib/storage/session";
 import rootReducer from "./rootReducer";
 import {
-  FLUSH,
-  PAUSE,
+  //FLUSH,
+  //PAUSE,
   persistReducer,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
+  //PURGE,
+  //REGISTER,
+  //REHYDRATE,
 } from "redux-persist";
 
 const persistConfig = {

@@ -6,7 +6,7 @@ import { HiChevronUpDown } from "react-icons/hi2";
 import { Rating } from "@mui/material";
 import { IoMdMore } from "react-icons/io";
 import { useAppSelector } from "../../constants/redux/hooks";
-import PlusIcon from "./PlusIcon";
+import PlusIcon from "../../components/shared/custom-icons/PlusIcon"
 
 const Dashboard = () => {
   const { allHospitals } = useAppSelector((state) => state.auth);

@@ -20,7 +20,7 @@ const Layout = () => {
     component: React.ReactNode;
   }> = [
     {
-      path: "dashboard",
+      path: "hospitals",
       component: <Dashboard />,
     },
   ];
@@ -55,7 +55,7 @@ const Layout = () => {
           );
         })}
 
-        <Route path="" element={<Navigate to="dashboard" />} />
+        <Route path="" element={<Navigate to="hospitals" />} />
       </Routes>
     );
   }

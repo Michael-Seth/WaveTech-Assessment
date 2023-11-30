@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { HiOutlineBell } from "react-icons/hi";
 import { useAppSelector } from "../../../constants/redux/hooks";
 import Search from "../../../assets/Icon-left.svg";
@@ -16,21 +16,11 @@ const Header = () => {
         />
       </div>
 
-      <div className="flex items-center right-0 relative  sm:w-full gap-2 mr-3 pr-20 lg:pr-2">
-    
-
-        <IconButton className="relative">
-          <HiOutlineBell
-            fontSize={24}
-            className="mr-5 h-[18px] w-[18px] rounded-full "
-          />
-          <Typography
-            variant="caption"
-            className="absolute top-0 bg-primary text-white font-[600] font-SF w-[18px] h-[18px] flex items-center justify-center text-[14px] rounded-full"
-          >
-            4
-          </Typography>
-        </IconButton>
+      <div className="flex items-center justify-end  sm:w-full gap-2 mr-3 pr-20 lg:pr-2">
+        <HiOutlineBell
+          fontSize={40}
+          className="mr-5 bg-gray-100 w-9 h-9 p-2 text-gray-700 rounded-full "
+        />
 
         <Box component="div" className=" w-[40px] h-[40px] rounded-full">
           <Box

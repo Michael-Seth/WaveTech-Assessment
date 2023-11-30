@@ -19,6 +19,7 @@ export default class UserSeeder implements Seeder {
         password: hasedPassword,
         firstName: 'Michael',
         lastName: 'Osas',
+        profileImg: 'https://image.shutterstock.com/image-photo/young-smiling-cheerful-satisfied-positive-260nw-2127045413.jpg'
       },
     ]);
     await repository.upsert(entities, ['email']);

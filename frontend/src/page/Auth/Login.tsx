@@ -31,7 +31,7 @@ const Login = () => {
 
         if (res.payload.accessToken) {
         
-          navigate("/app/dashboard");
+          navigate("/app/hospitals");
 
         } else {
           setApiError(res.payload.message);

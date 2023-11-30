@@ -40,6 +40,10 @@ export class User  {
   @Column({ type: String, nullable: true })
   lastName: string | null;
 
+  @Index()
+  @Column({ type: String, nullable: true })
+  profileImg: string | null;
+
   @CreateDateColumn()
   createdAt: Date;
 
