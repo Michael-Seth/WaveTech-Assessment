@@ -9,7 +9,7 @@ const Siderbar = () => {
       component="aside"
       className=" flex flex-col w-[240px] h-full py-3 bg-white shadow xl:overflow-y-auto 2xl:overflow-y-auto    "
     >
-      <Box component="div" className="flex items-center gap-2 justify-center">
+      <Box component="div" className="flex items-center gap-2 mt-2 justify-center">
         <AppLogo color="#fff" />
       </Box>
       <Box component="div" className="flex-1 py-8 flex flex-col gap-4">

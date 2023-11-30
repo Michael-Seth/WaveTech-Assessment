@@ -42,7 +42,7 @@ function SidebarLink({ icons, label, path, id, setOpen }: ISidbarProps) {
       <Box className="flex items-center justify-start gap-4 w-[209px] pl-6   ">
         <Box component="img" src={icons} className="text-[20px] mt-1   " />
 
-        <Typography variant="h6" className="flex text-sm font-SF font-[500] ">
+        <Typography variant="h6" className="flex text-sm text-black font-SF font-[500] ">
           {label}
         </Typography>
       </Box>

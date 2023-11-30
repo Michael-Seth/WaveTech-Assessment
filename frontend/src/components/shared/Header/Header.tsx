@@ -45,16 +45,6 @@ const Header = () => {
             className="rounded-full"
           />
         </Box>
-        <Box
-          component="button"
-          className=" flex items-start gap-2 border-none bg-black/0 relative cursor-pointer"
-        >
-          <Box className="flex flex-col gap-2 ">
-            <span className="font-[600] font-SF text-[16px]">
-              {user?.firstname ?? ""} {user?.lastname ?? ""}
-            </span>
-          </Box>
-        </Box>
       </div>
     </div>
   );
