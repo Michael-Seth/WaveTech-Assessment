@@ -27,7 +27,7 @@ const AppLogo = ({ color }: { color?: string }) => {
                   rx="12.8989"
                   transform="rotate(-90 97.8058 144.556)"
                   stroke="url(#paint0_linear_0_1)"
-                  stroke-width="1.83965"
+                  strokeWidth="1.83965"
                 />
               </g>
             </g>
@@ -43,7 +43,7 @@ const AppLogo = ({ color }: { color?: string }) => {
                   rx="12.8989"
                   transform="rotate(-180 96.8936 29.8627)"
                   stroke="url(#paint1_linear_0_1)"
-                  stroke-width="1.83965"
+                  strokeWidth="1.83965"
                 />
               </g>
             </g>

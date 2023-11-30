@@ -4,7 +4,10 @@ import { useAppSelector } from "../../../constants/redux/hooks";
 import Search from "../../../assets/Icon-left.svg";
 
 const Header = () => {
-  const { userDetails: user } = useAppSelector((state) => state.auth);
+  const user = useAppSelector((state) => {
+    //console.log("State: ", state);
+    state.auth;
+  });
   return (
     <div className=" bg-white h-20 px-4 flex items-center  w-full justify-between">
       <div className=" w-[629px] flex items-center rounded-md bg-slate-50  ">
@@ -26,8 +29,7 @@ const Header = () => {
           <Box
             component="img"
             src={
-              user?.profileImg ??
-              "https://cdn.pixabay.com/photo/2016/09/28/02/14/user-1699635_1280.png"
+              "https://image.shutterstock.com/image-photo/young-smiling-cheerful-satisfied-positive-260nw-2127045413.jpg"
             }
             width="40px"
             height="40px"
@@ -39,5 +41,6 @@ const Header = () => {
     </div>
   );
 };
+//user?.profileImg ??
 
 export default Header;
